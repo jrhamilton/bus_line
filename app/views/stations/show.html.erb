@@ -1,6 +1,7 @@
 <h2><%= @station.name %></h2>
 
 <%= render 'form' %>
+<%= render('layouts/errors', :object => @station) %>
 
 <p><%= link_to "Delete", station_path(@station),
                          :confirm => "Are You Sure?",

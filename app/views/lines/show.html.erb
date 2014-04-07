@@ -1,0 +1,19 @@
+<h2><%= @line.name %></h2>
+
+<%= render 'form' %>
+<%= render('layouts/errors', :object => @line) %>
+<%= link_to "Delete", line_path(@line),
+                         :confirm => "Are You Sure?",
+                         :method => "delete",
+                         :class => "btn btn-danger" %>
+<br>
+<br>
+<h4>Add a Station to the <%= @line.name %> Line</h4>
+<%= form_for(@line.stops.new) do |f| %>
+  <div class="form-group">
+    <%= f.label :station_id %>
+    <%= f.collection_select :station_id, Station.all, :id, :name %>
+    <%= f.hidden_field :line_id %>
+    <%= f.submit(:class => "btn btn-primary") %>
+  </div>
+<% end %>
