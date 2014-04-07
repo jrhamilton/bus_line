@@ -1,5 +1,5 @@
 BusSystem::Application.routes.draw do
-  resources :stations, :except => [:new]
-  resources :lines, :except => [:new]
-  match('/', {:via => :get, :to => 'main#index'})
+  resources :stations, :except => [:new, :edit]
+  resources :lines, :except => [:new, :edit]
+  match('/', {:via => :get, :to => 'mains#index'})
 end
