@@ -18,10 +18,6 @@ class LinesController < ApplicationController
   end
 
   def show
-
-    if !@stop
-      @stop = Stop.new
-    end
     @line = Line.find(params[:id])
   end
 
@@ -44,10 +40,10 @@ class LinesController < ApplicationController
       show
     end
   end
-end
-  # private
-  # def user_params
-  #   params.require(:user).permit(:name)
-  # end
 
+  private
+  def user_params
+    params.require(:line).permit(:name)
+  end
+end
 

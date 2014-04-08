@@ -1,4 +1,4 @@
-<h2><%= @line.name %></h2>
+<h2><%= @line.name %> Line</h2>
 
 <%= render 'form' %>
 <%= render('layouts/errors', :object => @line) %>
@@ -8,12 +8,23 @@
                          :class => "btn btn-danger" %>
 <br>
 <br>
-<h4>Add a Station to the <%= @line.name %> Line</h4>
+
+<h4>Stations:</h4>
+<ul>
+  <% @line.stops.each do |stop| %>
+    <li><%= Station.find(stop.station_id).name %></li>
+  <% end %>
+</ul>
+<br>
+<h4>Add a Stop to the <%= @line.name %> Line</h4>
 <%= form_for(@line.stops.new) do |f| %>
   <div class="form-group">
     <%= f.label :station_id %>
     <%= f.collection_select :station_id, Station.all, :id, :name %>
+    <%= f.label :stop_time %>
+    <%= f.text_field :stop_time %>
     <%= f.hidden_field :line_id %>
     <%= f.submit(:class => "btn btn-primary") %>
+
   </div>
 <% end %>

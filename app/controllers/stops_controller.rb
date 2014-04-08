@@ -12,7 +12,14 @@ class StopsController < ApplicationController
       puts stop_params[:line_id]
       redirect_to("/lines/#{stop_params[:line_id]}")
     else
-      render 'index'
+      flash[:alert] = @stop.errors.full_messages
+      stop_params = params[:stop]
+      redirect_to("/lines/#{stop_params[:line_id]}")
     end
+  end
+
+  private
+  def user_params
+    params.require(:stop).permit(:station_id, :line_id, :stop_time)
   end
 end

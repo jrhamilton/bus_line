@@ -40,10 +40,12 @@ class StationsController < ApplicationController
       show
     end
   end
+
+  private
+  def user_params
+    params.require(:station).permit(:name)
+  end
 end
-  # private
-  # def user_params
-  #   params.require(:user).permit(:name)
-  # end
+
 
 
